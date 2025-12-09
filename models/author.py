@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+
+"""
+Classe Author, hérite de Person
+"""
+
+from dataclasses import dataclass, field
+
+from models.person import Person
+
+
+@dataclass
+class Author(Person):
+    biography: str
+    def __init__(self, id_person: int, firstname: str, lastname: str, biography):
+        super().__init__(id_person, firstname, lastname)
+        self.biography = biography
+
+    def __str__(self) -> str:
+        if self.biography != "":
+            return f"{self.firstname} {self.lastname}\n    - Biographie : {self.biography}"
+        else:
+            return f"{self.firstname} {self.lastname}"
+

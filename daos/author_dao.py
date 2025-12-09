@@ -1,0 +1,123 @@
+# -*- coding: utf-8 -*-
+
+"""
+Classe Dao[Person]
+"""
+from models.person import Person
+from daos.dao import Dao
+from dataclasses import dataclass, field
+from typing import Optional
+
+
+@dataclass
+class PersonDao(Dao[Person]):
+    def create(self, person: Person) -> int:
+        """Crée en BD l'entité Course correspondant au cours course
+
+        :param person:
+        :return: l'id de l'entité insérée en BD (0 si la création a échoué)
+        """
+        ...
+        return 0
+
+    def read(self, id_course: int) -> Optional[Person]:
+        """Renvoie le cours correspondant à l'entité dont l'id est id_course
+           (ou None s'il n'a pu être trouvé)"""
+        person: Optional[Person]
+
+        with Dao.connection.cursor() as cursor:
+            sql = "SELECT * FROM course WHERE id_course=%s"
+            cursor.execute(sql, (id_course,))
+            record = cursor.fetchone()
+        if record is not None:
+            course = Course(record['name'], record['start_date'], record['end_date'])
+            course.id = record['id_course']
+        else:
+            course = None
+
+        return course
+
+    @staticmethod
+    def read_all():
+        courses: list[Course] = []
+        with Dao.connection.cursor() as cursor:
+            sql = "SELECT * FROM course"
+            cursor.execute(sql)
+            record = cursor.fetchall()
+        if record is not None:
+            for course in record:
+                course_one = Course(course['name'], course['start_date'], course['end_date'])
+                course_one.id = course['id_course']
+                course_one.teacher = CourseDao().get_teacher(course_one.id)
+                course_one.students_taking_it = CourseDao().get_students(course_one.id)
+                courses.append(course_one)
+        else:
+            courses = None
+        return courses
+
+    @staticmethod
+    def get_teacher(id_course):
+        """Renvoie l'enseignant' correspondant à l'entité dont l'id est id_teacher
+           (ou None s'il n'a pu être trouvé)"""
+        # Mettre dans dao_teacher puis renvoyer teacher ?
+        with Dao.connection.cursor() as cursor:
+            sql = "SELECT id_teacher FROM course WHERE id_course=%s"
+            cursor.execute(sql, (id_course,))
+            record = cursor.fetchone()
+        if record is not None:
+            with Dao.connection.cursor() as cursor:
+                id_teacher = record['id_teacher']
+                sql = "SELECT hiring_date FROM teacher WHERE id_teacher=%s"
+                cursor.execute(sql, id_teacher)
+                record = cursor.fetchone()
+                if record is not None:
+                    hiring_date = record['hiring_date']
+                else:
+                    hiring_date = ""
+                # Créer un objet Teacher
+                sql = "SELECT teacher.id_teacher, person.first_name, person.last_name, person.age, address.street, address.city, address.postal_code, address.id_address FROM person LEFT OUTER JOIN address ON person.id_address = address.id_address LEFT OUTER JOIN teacher ON teacher.id_person = person.id_person WHERE teacher.id_teacher=%s"
+                cursor.execute(sql, (id_teacher,))
+                record = cursor.fetchone()
+                if record is not None:
+                    teacher = Teacher(record['first_name'], record['last_name'], record['age'], hiring_date)
+                    if record['id_address'] is not None:
+                        teacher.address = Address(record['street'], record['city'], record['postal_code'])
+                        teacher.address.id = record['id_address']
+        else:
+            teacher = None
+        return teacher
+
+    @staticmethod
+    def get_students(id_course):
+        """Renvoie les élèves correspondant aux entités dont l'id du cours est id_course
+                   (ou None s'il n'ont pu être trouvés)"""
+        with Dao.connection.cursor() as cursor:
+            sql = "SELECT student.student_nbr, person.first_name, person.last_name, person.age, address.street, address.city, address.postal_code FROM person LEFT OUTER JOIN address ON person.id_address = address.id_address LEFT OUTER JOIN student ON student.id_person = person.id_person LEFT OUTER JOIN takes ON takes.student_nbr = student.student_nbr WHERE takes.id_course=%s"
+            cursor.execute(sql, (id_course,))
+            record = cursor.fetchall()
+            if record is not None:
+                students: list[Student] = []
+                for student in record:
+                    student_one = Student(student['first_name'], student['last_name'], student['age'])
+                    if student['city'] is not None:
+                        student_one.address = Address(student['street'], student['city'], student['postal_code'])
+                    students.append(student_one)
+        return students
+
+    def update(self, course: Course) -> bool:
+        """Met à jour en BD l'entité Course correspondant à course, pour y correspondre
+
+        :param course: cours déjà mis à jour en mémoire
+        :return: True si la mise à jour a pu être réalisée
+        """
+        ...
+        return True
+
+    def delete(self, course: Course) -> bool:
+        """Supprime en BD l'entité Course correspondant à course
+
+        :param course: cours dont l'entité Course correspondante est à supprimer
+        :return: True si la suppression a pu être réalisée
+        """
+        ...
+        return True
