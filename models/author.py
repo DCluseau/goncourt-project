@@ -4,8 +4,7 @@
 Classe Author, hérite de Person
 """
 
-from dataclasses import dataclass, field
-
+from dataclasses import dataclass
 from models.person import Person
 
 

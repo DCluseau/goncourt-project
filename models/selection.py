@@ -3,8 +3,8 @@
 """
 Classe Selection
 """
-from abc import ABC
-from dataclasses import dataclass, field
+
+from dataclasses import dataclass
 from datetime import datetime
 
 from models.jury_member import JuryMember
@@ -12,7 +12,7 @@ from models.book import Book
 
 
 @dataclass
-class Selection(ABC):
+class Selection():
     id_selection: int
     round_nb: int
     year: datetime

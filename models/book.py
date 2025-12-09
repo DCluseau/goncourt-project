@@ -4,8 +4,7 @@
 Classe Book
 """
 
-from abc import ABC
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date
 
 from author import Author
@@ -16,7 +15,7 @@ import publisher
 
 
 @dataclass
-class Book(ABC):
+class Book:
     isbn: int
     title: str
     summary: str

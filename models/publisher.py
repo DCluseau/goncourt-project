@@ -4,15 +4,14 @@
 Classe Publisher
 """
 
-from abc import ABC
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 @dataclass
-class Publisher(ABC):
+class Publisher:
     id_publisher: int
     name: str
 
-    def __init__(self, id_publisher: str, name: str):
+    def __init__(self, id_publisher: int, name: str):
         self.id_publisher = id_publisher
         self.name = name
 

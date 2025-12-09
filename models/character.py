@@ -11,7 +11,7 @@ from models.person import Person
 
 @dataclass
 class Character(Person):
-
-    def __init__(self, id_person: int, firstname: str, lastname: str):
+    isbn: int
+    def __init__(self, id_person: int, firstname: str, lastname: str, isbn: int):
         super().__init__(id_person, firstname, lastname)
-
+        self.isbn = isbn
