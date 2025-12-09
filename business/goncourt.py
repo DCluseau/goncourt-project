@@ -32,6 +32,6 @@ class Goncourt:
             cursor.execute(sql,)
             record = cursor.fetchall()
         if record is not None:
-            self.selections.append(SelectionDao.read(record['id']))
+            self.add_selection(SelectionDao.read(record['id']))
         else:
             self.selections = []
