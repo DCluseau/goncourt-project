@@ -6,17 +6,15 @@ Classe Book
 
 from dataclasses import dataclass
 from datetime import date
+from time import strftime
 
-from author import Author
-from publisher import Publisher
-import character
-import publisher
-
-
+from models import character
+from models.author import Author
+from models.publisher import Publisher
 
 @dataclass
 class Book:
-    isbn: int
+    isbn: str
     title: str
     summary: str
     publication_date: date
@@ -24,10 +22,10 @@ class Book:
     publisher_price: float
     prize: bool
     author: Author
-    publisher: publisher.Publisher
+    publisher: Publisher
     characters: list[character.Character]
 
-    def __init__(self, isbn: int, title: str, summary: str, publication_date: date, number_of_page: int, publisher_price: float, prize: bool, author_: Author, publisher_: Publisher, characters: list[character.Character]):
+    def __init__(self, isbn: str, title: str, summary: str, publication_date: date, number_of_page: int, publisher_price: float, prize: bool, author_: Author, publisher_: Publisher, characters: list[character.Character]):
         self.isbn = isbn
         self.title = title
         self.summary = summary
@@ -40,7 +38,16 @@ class Book:
         self.characters = characters
 
     def __str__(self) -> str:
-        return f" - ISBN : {self.isbn}\n - Titre: {self.title}\n - Auteur : {self.author.firstname} {self.author.lastname}\n - Prix : {self.publisher_price}\n - Editeur : {self.publisher.name}\n - Nombre de pages : {self.number_of_page}\n - Date de parution : {self.publication_date}\nRésumé : {self.summary}\n - Personnages :\n{self.display_characters()}\n"
+        if self.summary is not None:
+            summary = f"Résumé : {self.summary}"
+        else:
+            summary = "Résumé non renseigné"
+        characters = self.display_characters()
+        if characters != "":
+            characters = f"Personnages :\n{characters}"
+        else:
+            characters = "Personnages non renseignés"
+        return f"\nISBN : {self.isbn}\n - Titre: {self.title}\n - Auteur : {self.author.firstname} {self.author.lastname}\n - Prix : {self.publisher_price}\n - Editeur : {self.publisher.name}\n - Nombre de pages : {self.number_of_page}\n - Date de parution : {self.publication_date.strftime("%d/%m/%Y")}\n - {summary}\n - {characters}\n"
 
     def display_characters(self):
         characters_list: str = ""

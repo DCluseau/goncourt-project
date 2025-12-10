@@ -5,7 +5,6 @@ Classe Goncourt
 """
 
 from dataclasses import dataclass, field
-from typing import Optional
 
 from daos.dao import Dao
 from daos.selection_dao import SelectionDao
@@ -19,10 +18,12 @@ class Goncourt:
     reprenant les cas d'utilisation et les spécifications fonctionnelles
     """
 
-    selections: list[Selection]
+    selections: list[Selection] = field(default_factory=list)
+
+    def __init__ (self):
+        self.selections = []
 
     def add_selection(self, selection: Selection) -> None:
-        """Ajout du cours course à la liste des cours."""
         self.selections.append(selection)
 
 
@@ -32,6 +33,13 @@ class Goncourt:
             cursor.execute(sql,)
             record = cursor.fetchall()
         if record is not None:
-            self.add_selection(SelectionDao.read(record['id']))
+            for row in record:
+                self.add_selection(SelectionDao.read(SelectionDao(), row['id']))
         else:
             self.selections = []
+
+    def __str__(self):
+        selection_str = ""
+        for selection in self.selections:
+            selection_str += f"{selection}"
+        return selection_str

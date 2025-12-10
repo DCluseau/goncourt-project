@@ -31,7 +31,8 @@ class SelectionDao(Dao[Selection]):
         jury_member: JuryMemberDao
         jury_members: list[JuryMember] = []
         book: Optional[Book]
-        books: dict[Book, int] = {}
+        books: list[Book] = []
+        votes: dict[str, int] = {}
         with Dao.connection.cursor() as cursor:
             sql = "SELECT id_person FROM is_jury_member WHERE id_selection = %s"
             cursor.execute(sql, id_selection,)
@@ -46,13 +47,14 @@ class SelectionDao(Dao[Selection]):
             if record is not None:
                 for row in record:
                     book = BookDao.read(BookDao(),row['isbn'])
-                    books[book] = row['number_of_votes']
+                    books.append(book)
+                    votes[book.isbn] = row['number_of_votes']
         with Dao.connection.cursor() as cursor:
             sql = "SELECT id, round, year_selection FROM selection WHERE selection.id = %s"
             cursor.execute(sql, (id_selection,))
             record = cursor.fetchone()
             if record is not None:
-                selection = Selection(record['id'], record['round'], record['year_selection'], jury_members, books)
+                selection = Selection(record['id'], record['round'], record['year_selection'], jury_members, books, votes)
             else:
                 selection = None
         return selection

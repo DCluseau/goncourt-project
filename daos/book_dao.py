@@ -28,7 +28,7 @@ class BookDao(Dao[Book]):
     def delete(self, book: Book) -> bool:
         pass
 
-    def read(self, isbn: int) -> Optional[Book]:
+    def read(self, isbn: str) -> Optional[Book]:
         """Renvoie l'éditeur correspondant à l'entité dont l'id est isbn
            (ou None s'il n'a pu être trouvé)"""
         book: Optional[Book]
@@ -46,21 +46,21 @@ class BookDao(Dao[Book]):
         with Dao.connection.cursor() as cursor:
             sql = "SELECT id_author FROM book WHERE isbn = %s"
             cursor.execute(sql, (isbn,))
-            record = cursor.fetch()
+            record = cursor.fetchone()
             if record is not None:
-                author = AuthorDao.read(AuthorDao(), row['id_author'])
+                author = AuthorDao.read(AuthorDao(), record['id_author'])
             else:
                 author = None
         with Dao.connection.cursor() as cursor:
             sql = "SELECT id_publisher FROM book WHERE isbn = %s"
             cursor.execute(sql, (isbn,))
-            record = cursor.fetch()
+            record = cursor.fetchone()
             if record is not None:
-                publisher = PublisherDao.read(PublisherDao(), row['id_publisher'])
+                publisher = PublisherDao.read(PublisherDao(), record['id_publisher'])
             else:
                 publisher = None
         with Dao.connection.cursor() as cursor:
-            sql = "SELECT title, summary, publication_date, number_of_pages, publisher_price, id_author, id_publisher FROM is_character WHERE book.isbn = %s"
+            sql = "SELECT title, summary, publication_date, number_of_pages, publisher_price, id_author, prize, id_publisher FROM book LEFT OUTER JOIN is_character ON book.isbn = is_character.isbn WHERE book.isbn = %s"
             cursor.execute(sql, (isbn,))
             record = cursor.fetchone()
             if record is not None:
