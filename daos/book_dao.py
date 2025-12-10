@@ -42,13 +42,13 @@ class BookDao(Dao[Book]):
             record = cursor.fetchall()
             if record is not None:
                 for row in record:
-                    characters_list.append(CharacterDao.read(row['id_person']))
+                    characters_list.append(CharacterDao.read(CharacterDao(), row['id_person']))
         with Dao.connection.cursor() as cursor:
             sql = "SELECT id_author FROM book WHERE isbn = %s"
             cursor.execute(sql, (isbn,))
             record = cursor.fetch()
             if record is not None:
-                author = AuthorDao.read(row['id_author'])
+                author = AuthorDao.read(AuthorDao(), row['id_author'])
             else:
                 author = None
         with Dao.connection.cursor() as cursor:
@@ -56,7 +56,7 @@ class BookDao(Dao[Book]):
             cursor.execute(sql, (isbn,))
             record = cursor.fetch()
             if record is not None:
-                publisher = PublisherDao.read(row['id_publisher'])
+                publisher = PublisherDao.read(PublisherDao(), row['id_publisher'])
             else:
                 publisher = None
         with Dao.connection.cursor() as cursor:
@@ -64,7 +64,7 @@ class BookDao(Dao[Book]):
             cursor.execute(sql, (isbn,))
             record = cursor.fetchone()
             if record is not None:
-                book = Book(record['title'], record['summary'], record['publication_date'], record['number_of_pages'], record['publisher_price'], record['prize'], author, publisher, characters_list)
+                book = Book(isbn, record['title'], record['summary'], record['publication_date'], record['number_of_pages'], record['publisher_price'], record['prize'], author, publisher, characters_list)
             else:
                 book = None
         return book

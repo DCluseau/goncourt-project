@@ -28,11 +28,11 @@ class CharacterDao(Dao[Character]):
         character: Optional[Character]
 
         with Dao.connection.cursor() as cursor:
-            sql = "SELECT person.firstname, person.lastname FROM person INNER JOIN is_character ON person.id = is_character.id_person WHERE person.id = %s"
+            sql = "SELECT person.id, person.firstname, person.lastname, character.isbn FROM person INNER JOIN is_character ON person.id = is_character.id_person WHERE person.id = %s"
             cursor.execute(sql, (id_person,))
             record = cursor.fetchone()
         if record is not None:
-            character = Character(record['id'], record['firstname'], record['lastname'])
+            character = Character(record['id'], record['firstname'], record['lastname'], record['isbn'])
         else:
             character = None
         return character

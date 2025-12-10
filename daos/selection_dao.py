@@ -38,14 +38,14 @@ class SelectionDao(Dao[Selection]):
             record = cursor.fetchall()
             if record is not None:
                 for row in record:
-                    jury_members.append(JuryMemberDao.read([row['id_person'], id_selection]))
+                    jury_members.append(JuryMemberDao.read(JuryMemberDao(),[row['id_person'], id_selection]))
         with Dao.connection.cursor() as cursor:
             sql = "SELECT isbn, number_of_votes FROM is_selected WHERE id_selection = %s"
             cursor.execute(sql, id_selection,)
             record = cursor.fetchall()
             if record is not None:
                 for row in record:
-                    book = BookDao.read(row['isbn'])
+                    book = BookDao.read(BookDao(),row['isbn'])
                     books[book] = row['number_of_votes']
         with Dao.connection.cursor() as cursor:
             sql = "SELECT id, round, year_selection FROM selection WHERE selection.id = %s"

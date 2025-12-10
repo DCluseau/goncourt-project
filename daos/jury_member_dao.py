@@ -3,10 +3,10 @@
 """
 Classe Dao[Character]
 """
-from abc import ABC
+
 from models.jury_member import JuryMember
 from daos.dao import Dao
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
 
 
