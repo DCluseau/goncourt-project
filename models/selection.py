@@ -12,32 +12,35 @@ from models.book import Book
 
 
 @dataclass
-class Selection():
+class Selection:
     id_selection: int
     round_nb: int
     year: datetime
     jury_members: list[JuryMember]
-    books: dict[Book, int]
+    books: list[Book]
+    votes: dict[str, int]
 
-    def __init__(self, id_selection: int, round_nb: int, year: datetime, jury_members: list[JuryMember], books: dict[
-        Book, int]):
+    def __init__(self, id_selection: int, round_nb: int, year: datetime, jury_members: list[JuryMember], books: list[
+        Book], votes: dict[str, int]):
         self.id_selection = id_selection
         self.round_nb = round_nb
         self.year = year
         self.jury_members = jury_members
         self.books = books
+        self.votes = votes
 
     def __str__(self) -> str:
-        return f"Année : {self.year}\nMembres du jury : {self.display_jury_members()}\nTour numéro {self.round_nb}\nSélection de livres : {self.display_books()}"
+        return f"Année : {self.year}\nMembres du jury : {self.display_jury_members()}\nTour numéro {self.round_nb}\nSélection de livres :\n{self.display_books()}"
 
     def set_vote(self, book: Book, nb_of_votes: int):
-        self.books[book] = nb_of_votes
+        self.votes[book.isbn] = nb_of_votes
 
     def display_books(self):
         book_str: str = ""
-        for book, nb_vote in self.books:
+        for book in self.books:
             book_str += str(book)
-            book_str += f"Nombre de votes : {nb_vote}"
+            book_str += f"Nombre de votes : {self.votes[book.isbn]}"
+            book_str += "\n------------------------------------------------------"
         return book_str
 
     def display_jury_members(self):

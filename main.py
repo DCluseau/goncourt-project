@@ -19,5 +19,10 @@ def main() -> None:
 
     goncourt.read_selections()
     print(goncourt)
+
+    goncourt.selections[0].votes['9782073080028'] = 1
+    goncourt.update_vote(goncourt.selections[0], '9782073080028')
+
+    print(goncourt.selections[0])
 if __name__ == '__main__':
     main()

@@ -26,7 +26,6 @@ class Goncourt:
     def add_selection(self, selection: Selection) -> None:
         self.selections.append(selection)
 
-
     def read_selections(self):
         with Dao.connection.cursor() as cursor:
             sql = "SELECT id FROM selection"
@@ -43,3 +42,14 @@ class Goncourt:
         for selection in self.selections:
             selection_str += f"{selection}"
         return selection_str
+
+    @staticmethod
+    def update_vote(selection: Selection, isbn: str) -> bool:
+        with Dao.connection.cursor() as cursor:
+            sql = "UPDATE is_selected SET number_of_votes = %s WHERE isbn = %s and id_selection = %s"
+            cursor.execute(sql, (selection.votes[isbn], isbn, selection.id_selection),)
+            Dao.connection.commit()
+            if cursor.rowcount is not None and cursor.rowcount > 0:
+                return True
+            else:
+                return False
