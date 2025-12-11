@@ -68,3 +68,14 @@ class BookDao(Dao[Book]):
             else:
                 book = None
         return book
+
+    def read_all_books(self):
+        book_list: list[Book] = []
+        with Dao.connection.cursor() as cursor:
+            sql = "SELECT isbn FROM book"
+            cursor.execute(sql,)
+            record = cursor.fetchall()
+            if record is not None:
+                for row in record:
+                    book_list.append(self.read(row['isbn']))
+        return book_list
