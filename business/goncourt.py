@@ -6,8 +6,10 @@ Classe Goncourt
 
 from dataclasses import dataclass, field
 
+from daos.book_dao import BookDao
 from daos.dao import Dao
 from daos.selection_dao import SelectionDao
+from models.book import Book
 from models.selection import Selection
 
 ## PRENDRE EN COMPTE QU'ON N'EST QUE LE 03/09 et que le président sélectionne les romans pour les deux autres tours
@@ -53,3 +55,22 @@ class Goncourt:
                 return True
             else:
                 return False
+
+    @staticmethod
+    def add_book(isbn: str, id_selection: int, nb_of_votes: int) -> bool:
+        with Dao.connection.cursor() as cursor:
+            sql = "INSERT INTO is_selected (isbn, id_selection, number_of_votes) VALUES (%s, %s, %s)"
+            cursor.execute(sql, (isbn, id_selection, nb_of_votes),)
+            Dao.connection.commit()
+            if cursor.rowcount is not None and cursor.rowcount > 0:
+                return True
+            else:
+                return False
+
+    @staticmethod
+    def print_all_books():
+        list_of_books: list[Book] = BookDao().read_all_books()
+        list_of_books_str: str = ""
+        for book in list_of_books:
+            list_of_books_str += f" - {book.isbn} - {book.title} - {book.author.firstname} {book.author.lastname}\n"
+        return list_of_books_str

@@ -16,8 +16,8 @@ class Author(Person):
         self.biography = biography
 
     def __str__(self) -> str:
-        if self.biography != "":
-            return f"{self.firstname} {self.lastname}\n    - Biographie : {self.biography}"
+        if self.biography is not None:
+            return f"{self.firstname} {self.lastname}\n    - Biographie : {self.biography}\n"
         else:
-            return f"{self.firstname} {self.lastname}"
+            return f"{self.firstname} {self.lastname}\n"
 

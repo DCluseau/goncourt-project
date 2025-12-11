@@ -36,15 +36,26 @@ def select_selection(year: int):
     print("      CHOIX DE LA SÉLECTION")
     print("==================================\n")
     nb_round = int(input(f"Pour quel tour voulez-vous afficher la sélection ? (année {year})\n"))
-    return 1
+    return nb_round
 
-def add_book_to_select():
+def add_book_to_select(goncourt: Goncourt, nb_round: int, year: int):
     print("==================================")
     print(" AJOUTER UN LIVRE A UNE SELECTION")
     print("==================================\n")
+    isbn: str = ""
+    id_selection: int = 0
+    nb_of_votes: int = 0
+
+    for x in range(len(goncourt.selections)):
+        if goncourt.selections[x].year == year and goncourt.selections[x].round_nb == nb_round:
+            id_selection = goncourt.selections[x].id_selection
+
+    print(goncourt.print_all_books())
+    isbn = input("Veuillez saisir l'ISBN du livre à ajouter : ")
+    nb_of_votes = int(input("Veuillez saisir le nombre de votes (0 si pas de vote) : "))
+    goncourt.add_book(isbn, id_selection, nb_of_votes)
 
 def set_votes(year: int, selected_round: int, goncourt: Goncourt):
-    id_selection:int = 0
     print("==================================")
     print("       SAISIR LES VOTES")
     print("==================================\n")
@@ -123,7 +134,7 @@ Bienvenue !\n""")
             case 4:
                 ## MENU 4 : AJOUTER UN LIVRE A UNE SELECTION ##
                 # Note : les livres sont déjà dans la BDD #
-                add_book_to_select()
+                add_book_to_select(goncourt, nb_round, year_choice)
             case 5:
                 ## MENU 5 : SAISIR LES VOTES ##
                 set_votes(year_choice, nb_round, goncourt)
