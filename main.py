@@ -27,7 +27,6 @@ def display_main_menu(is_jury_president: bool) -> None:
         print("6 - Indiquer quel livre a reçu le prix")
     print("0 - Quitter le programme")
 
-
 def select_selection(year: int):
     print("==================================")
     print("      CHOIX DE LA SÉLECTION")
@@ -159,8 +158,6 @@ Bienvenue !\n""")
                 display_main_menu(is_jury_president)
         display_main_menu(is_jury_president)
         menu_choice = int(input("Choix : "))
-
-    print(goncourt)
 
 if __name__ == '__main__':
     main()
