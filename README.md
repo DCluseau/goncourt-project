@@ -3,9 +3,12 @@
 ## Contexte
 
 Le prix Goncourt 2025 a été attribué mardi 4 novembre, au restaurant Drouant à Paris, à l'issue de trois sélections successives :
-  • mercredi 3/9 : première sélection comportant une liste de 15 romans ;
-  • mardi 7/10 : deuxième sélection, réduite à 8 romans ;
-  • mardi 28/10 : troisième sélection, révélant les 4 romans finalistes.
+
+  - mercredi 3/9 : première sélection comportant une liste de 15 romans ;
+  
+  - mardi 7/10 : deuxième sélection, réduite à 8 romans ;
+  
+  - mardi 28/10 : troisième sélection, révélant les 4 romans finalistes.
 
 Chaque livre porte un titre, est décrit par un résumé, écrit par un auteur, publié par un éditeur et comporte un ou plusieurs personnages principaux. Il est également caractérisé par une date de parution, un nombre de pages, un ISBN et un prix éditeur. En outre, chaque auteur peut être décrit – de façon optionnelle – par une biographie.
 
@@ -60,6 +63,9 @@ L'application affiche les livres sélectionnés pour l'année et le tour saisis
 Menu 3 : 
 L'application demande à l'utilisateur de saisir une année (au format AAAA)
 
+Menu 0 :
+Permet de quitter le programme
+
 Pour le président du jury :
 
 Menu 4 : 
@@ -70,9 +76,6 @@ L'application affiche les livres sélectionnés puis demande à l'utilisateur d'
 
 Menu 6 : 
 L'application affiche les livres sélectionnés pour le troisième tour de l'année puis demande à l'utilisateur de saisir l'ISBN du livre qui va recevoir le prix.
-
-Menu 0 :
-Permet de quitter le programme
 
 ## Pré-requis techniques
 - Python version 3.13
