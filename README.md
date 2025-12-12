@@ -21,7 +21,7 @@ L'application a pour but de permettre à un utilisateur d'afficher les livres s�
 - Saisie du nombre de votes pour un livre dans une sélection
 - Attribution du prix à un livre
 
-## Manuel d'utilisation
+## Fonctionnement
 
 Au lancement de l'application, il est demandé à l'utilisateur les informations suivantes :
 - L'année du concours
@@ -31,14 +31,19 @@ Au lancement de l'application, il est demandé à l'utilisateur les informations
 Le menu suivant s'affiche ensuite : 
 
 1 - Sélectionner la sélection sur laquelle travailler
+
 2 - Afficher les livres sélectionnés
+
 3 - Modifier l'année sur laquelle travailler
 
 Si l'utilisateur est le rpésident, un complément au menu est affiché :
 
 4 - Ajouter un livre à une sélection
+
 5 - Ajouter les votes à un livre
+
 6 - Indiquer quel livre a reçu le prix
+
 0 - Quitter le programme
 
 Pour sélectionner une action à effectuer, il suffit de saisir le numéro du menu dans la console.
