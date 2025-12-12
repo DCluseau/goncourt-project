@@ -32,21 +32,21 @@ Au lancement de l'application, il est demandé à l'utilisateur les informations
 
 Le menu suivant s'affiche ensuite : 
 
-  1 - Sélectionner la sélection sur laquelle travailler
+   1 - Sélectionner la sélection sur laquelle travailler
 
-  2 - Afficher les livres sélectionnés
+   2 - Afficher les livres sélectionnés
 
-  3 - Modifier l'année sur laquelle travailler
+   3 - Modifier l'année sur laquelle travailler
 
-  0 - Quitter le programme
+   0 - Quitter le programme
 
 Si l'utilisateur est le président, un complément au menu est affiché :
 
-  4 - Ajouter un livre à une sélection
+   4 - Ajouter un livre à une sélection
 
-  5 - Ajouter les votes à un livre
+   5 - Ajouter les votes à un livre
 
-  6 - Indiquer quel livre a reçu le prix
+   6 - Indiquer quel livre a reçu le prix
 
 Pour sélectionner une action à effectuer, il suffit de saisir le numéro du menu dans la console.
 Pour chaque action, l'application affiche les informations nécessaires avant de demander à l'utilisateur de saisir une nouvelle valeur. Une fois toutes les informations acquises, l'application les traite puis retourne automatiquement au menu principal.
@@ -76,3 +76,8 @@ L'application affiche les livres sélectionnés pour le troisième tour de l'ann
 
 ## Pré-requis techniques
 - Python version 3.13
+- cffi==2.0.0
+- cryptography==46.0.3
+- pycparser==2.23
+- PyMySQL==1.1.2
+- types-PyMySQL==1.1.0.20250916
