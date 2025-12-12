@@ -55,3 +55,6 @@ class Book:
             characters_list += f"    - {charac.firstname} {charac.lastname}"
         return characters_list
 
+    def set_prize(self, won: bool):
+        self.prize = won
+

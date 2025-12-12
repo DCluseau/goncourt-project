@@ -39,6 +39,8 @@ class Goncourt:
         else:
             self.selections = []
 
+
+
     def __str__(self):
         selection_str = ""
         for selection in self.selections:
@@ -74,3 +76,25 @@ class Goncourt:
         for book in list_of_books:
             list_of_books_str += f" - {book.isbn} - {book.title} - {book.author.firstname} {book.author.lastname}\n"
         return list_of_books_str
+
+    @staticmethod
+    def read_one_selection(year: int, num_round: int):
+        with Dao.connection.cursor() as cursor:
+            sql = "SELECT id FROM selection WHERE year_selection = %s AND round = %s"
+            cursor.execute(sql, (year, num_round),)
+            record = cursor.fetchone()
+        if record is not None:
+            return SelectionDao.read(SelectionDao(), record['id'])
+        else:
+            return None
+
+    @staticmethod
+    def update_prize(book: Book) -> bool:
+        with Dao.connection.cursor() as cursor:
+            sql = "UPDATE book SET prize = %s WHERE isbn = %s"
+            cursor.execute(sql, (book.prize, book.isbn))
+            Dao.connection.commit()
+            if cursor.rowcount is not None and cursor.rowcount > 0:
+                return True
+            else:
+                return False

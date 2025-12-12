@@ -5,9 +5,6 @@
 Application de gestion du Prix Goncourt
 """
 from business.goncourt import Goncourt
-from daos.selection_dao import SelectionDao
-from models.selection import Selection
-
 
 def choose_year():
     year_choice = int(input("Veuillez entrer l'année sur laquelle vous voulez travailler (format AAAA) : "))
@@ -27,7 +24,7 @@ def display_main_menu(is_jury_president: bool) -> None:
         print("\nRéservé au président du jury : \n")
         print("4 - Ajouter un livre à une sélection")
         print("5 - Ajouter les votes à un livre")
-        print("6 - Indiquer quel livre a réçu le prix")
+        print("6 - Indiquer quel livre a reçu le prix")
     print("0 - Quitter le programme")
 
 
@@ -73,15 +70,29 @@ def set_votes(year: int, selected_round: int, goncourt: Goncourt):
             goncourt.update_vote(goncourt.selections[x], selected_book)
             break
 
-def choose_winner(year: int):
+def choose_winner(goncourt: Goncourt, year: int):
     print("==================================")
     print("         DÉCERNER LE PRIX")
     print("==================================\n")
 
-def display_selected_books(year: int, selected_round: int):
+    print(goncourt.read_one_selection(year, 3))
+
+    isbn: str = input("Veuillez indiquer l'ISBN du livre qui va recevoir le prix à partir de la liste ci-dessus : ")
+    for x in range(len(goncourt.selections)):
+        if goncourt.selections[x].year == year and goncourt.selections[x].round_nb == 3:
+            for book in goncourt.selections[x].books:
+                if book.isbn == isbn:
+                    book.prize = True
+                    goncourt.update_prize(book)
+                else:
+                    book.prize = False
+                    goncourt.update_prize(book)
+
+def display_selected_books(goncourt: Goncourt, year: int, selected_round: int):
     print("==================================")
     print(" AFFICHER LES LIVRES SÉLECTIONNÉS")
     print("==================================\n")
+    print(goncourt.read_one_selection(year, selected_round))
 
 def main() -> None:
     year_choice:int = 0
@@ -126,7 +137,7 @@ Bienvenue !\n""")
                 nb_round = select_selection(year_choice)
             case 2:
                 ## MENU 2 : AFFICHER LES LIVRES SÉLECTIONNÉS #
-                display_selected_books(year_choice, nb_round)
+                display_selected_books(goncourt, year_choice, nb_round)
             case 3:
                 ## MENU 3 : MODIFIER L'ANNÉE #
                 year_choice = choose_year()
@@ -140,7 +151,10 @@ Bienvenue !\n""")
                 set_votes(year_choice, nb_round, goncourt)
             case 6:
                 ## MENU 6 : INDIQUER LE LIVRE QUI A RECU LE PRIX ##
-                choose_winner(year_choice)
+                if nb_round == 3:
+                    choose_winner(goncourt, year_choice)
+                else:
+                    print("Le prix ne peut être décerné que pour le 3ème tour.")
             case _:
                 display_main_menu(is_jury_president)
         display_main_menu(is_jury_president)

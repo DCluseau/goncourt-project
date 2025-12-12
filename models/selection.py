@@ -30,25 +30,29 @@ class Selection:
         self.votes = votes
 
     def __str__(self) -> str:
-        return f"Année : {self.year}\nMembres du jury : {self.display_jury_members()}\nTour numéro {self.round_nb}\nSélection de livres :\n{self.display_books()}"
+        return f"\nAnnée : {self.year}\nMembres du jury : {self.display_jury_members()}\nTour numéro {self.round_nb}\nSélection de livres :\n{self.display_books()}"
 
     def set_vote(self, book: Book, nb_of_votes: int):
         self.votes[book.isbn] = nb_of_votes
 
     def display_books(self):
         book_str: str = ""
+        gagnant_str: str = ""
         for book in self.books:
-            book_str += str(book)
-            book_str += f"Nombre de votes : {self.votes[book.isbn]}"
-            book_str += "\n------------------------------------------------------"
-        return book_str
+            if book.prize:
+                gagnant_str = f"Gagnant : \n{book}"
+            else:
+                book_str += f"{book}"
+                book_str += f"Nombre de votes : {self.votes[book.isbn]}"
+                book_str += "\n------------------------------------------------------"
+        return gagnant_str + book_str
 
     def display_jury_members(self):
         jury_members_str: str = ""
         jury_member_president: str = ""
         for jury_member in self.jury_members:
             if jury_member.president:
-                jury_member_president = f"Président : {str(jury_member)}\n"
+                jury_member_president = f"\n - {str(jury_member)} (président du jury)\n"
             else:
-                jury_members_str += str(jury_member)
+                jury_members_str += f"\n - {str(jury_member)}"
         return jury_member_president + jury_members_str

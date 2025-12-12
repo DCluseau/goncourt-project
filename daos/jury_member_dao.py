@@ -28,7 +28,7 @@ class JuryMemberDao(Dao[JuryMember]):
         jury_member: Optional[JuryMember]
 
         with Dao.connection.cursor() as cursor:
-            sql = "SELECT person.firstname, person.lastname FROM person INNER JOIN jury_member ON person.id = is_jury_member.id_person WHERE person.id = %s AND is_jury_member.id_selection = %s"
+            sql = "SELECT person.id, person.firstname, person.lastname, is_jury_member.presiding FROM person INNER JOIN is_jury_member ON person.id = is_jury_member.id_person WHERE person.id = %s AND is_jury_member.id_selection = %s"
             cursor.execute(sql, (jury_person[0], jury_person[1]))
             record = cursor.fetchone()
         if record is not None:

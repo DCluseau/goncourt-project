@@ -79,3 +79,5 @@ class BookDao(Dao[Book]):
                 for row in record:
                     book_list.append(self.read(row['isbn']))
         return book_list
+
+
