@@ -3,12 +3,9 @@
 ## Contexte
 
 Le prix Goncourt 2025 a été attribué mardi 4 novembre, au restaurant Drouant à Paris, à l'issue de trois sélections successives :
-
-  - mercredi 3/9 : première sélection comportant une liste de 15 romans ;
-  
-  - mardi 7/10 : deuxième sélection, réduite à 8 romans ;
-  
-  - mardi 28/10 : troisième sélection, révélant les 4 romans finalistes.
+ - mercredi 3/9 : première sélection comportant une liste de 15 romans ;
+ - mardi 7/10 : deuxième sélection, réduite à 8 romans ;
+ - mardi 28/10 : troisième sélection, révélant les 4 romans finalistes.
 
 Chaque livre porte un titre, est décrit par un résumé, écrit par un auteur, publié par un éditeur et comporte un ou plusieurs personnages principaux. Il est également caractérisé par une date de parution, un nombre de pages, un ISBN et un prix éditeur. En outre, chaque auteur peut être décrit – de façon optionnelle – par une biographie.
 
@@ -54,27 +51,27 @@ Si l'utilisateur est le président, un complément au menu est affiché :
 Pour sélectionner une action à effectuer, il suffit de saisir le numéro du menu dans la console.
 Pour chaque action, l'application affiche les informations nécessaires avant de demander à l'utilisateur de saisir une nouvelle valeur. Une fois toutes les informations acquises, l'application les traite puis retourne automatiquement au menu principal.
 
-Menu 1 : 
+ - Menu 1 : 
 L'application demande à l'utilisateur de saisir le numéro du tour sur lequel travailler.
 
-Menu 2 : 
+ - Menu 2 : 
 L'application affiche les livres sélectionnés pour l'année et le tour saisis
 
-Menu 3 : 
+ - Menu 3 : 
 L'application demande à l'utilisateur de saisir une année (au format AAAA)
 
-Menu 0 :
+ - Menu 0 :
 Permet de quitter le programme
 
 Pour le président du jury :
 
-Menu 4 : 
+ - Menu 4 : 
 L'application affiche la liste des livres enregistrés en base de données indépendamment de si ils ont été sélectionnés ou non. Elle demande ensuite à l'utilisateur d'entrer le code ISBN du livre à ajouter ainsi que le nombre de votes. Il est possible d'indiquer 0 si il n'y a pas encore eu de votes.
 
-Menu 5 : 
+ - Menu 5 : 
 L'application affiche les livres sélectionnés puis demande à l'utilisateur d'entrer le code ISBN du livre ainsi que le nombre de vote total.
 
-Menu 6 : 
+ - Menu 6 : 
 L'application affiche les livres sélectionnés pour le troisième tour de l'année puis demande à l'utilisateur de saisir l'ISBN du livre qui va recevoir le prix.
 
 ## Pré-requis techniques
