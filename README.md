@@ -8,6 +8,8 @@
 
 [Fonctionnalités principales](#fonctionnalités-principales)
 
+[Installation](#installation)
+
 [Fonctionnement](#fonctionnement)
 
 [Pré-requis techniques](#pré-requis-techniques)
@@ -34,6 +36,12 @@ L'application a pour but de permettre à un utilisateur d'afficher les livres s�
   - Ajout d'un livre à une sélection
   - Saisie du nombre de votes pour un livre dans une sélection
   - Attribution du prix à un livre
+
+## Installation
+
+- Téléchargez les fichiers et répertoires du programme à partir du répertoire Git dédié
+- Ne modifiez pas les noms ou l'architecture des répertoires ou des fichiers
+- Mettre l'ensemble de ce qui a été téléchargé dans un répertoire dédié
 
 ## Fonctionnement
 
