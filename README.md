@@ -76,8 +76,8 @@ L'application affiche les livres sélectionnés pour le troisième tour de l'ann
 
 ## Pré-requis techniques
 - Python version 3.13
-- cffi==2.0.0
-- cryptography==46.0.3
-- pycparser==2.23
-- PyMySQL==1.1.2
-- types-PyMySQL==1.1.0.20250916
+- cffi version 2.0.0
+- cryptography version 46.0.3
+- pycparser version 2.23
+- PyMySQL version 1.1.2
+- types-PyMySQL version 1.1.0.20250916
