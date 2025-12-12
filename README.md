@@ -37,7 +37,7 @@ L'application a pour but de permettre à un utilisateur d'afficher les livres s�
 
 ## Fonctionnement
 
-Avant de lancer l'application, assurez-vous que les pré-requis techniques soient remplis (voir [section dédiée](#section-dédiée)). Pour la lancer, veuillez ouvrir un terminal dans le répertoire principal du programme puis entrer la commande suivante :
+Avant de lancer l'application, assurez-vous que les pré-requis techniques soient remplis (voir [section dédiée](#pré-requis-techniques)). Pour la lancer, veuillez ouvrir un terminal dans le répertoire principal du programme puis entrer la commande suivante :
 
 ```python main.py```
 
