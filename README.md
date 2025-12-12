@@ -1,5 +1,7 @@
 # Application de gestion du Prix Goncourt
 
+## Sommaire
+
 [Contexte](#contexte)
 
 [Objectifs de l'application](#objectifs-de-lapplication)
