@@ -1,5 +1,11 @@
 # Application de gestion du Prix Goncourt
 
+[Contexte](#contexte)
+[Objectifs de l'application](#objectifs-de-lapplication)
+[Fonctionnalités principales](#fonctionnalites-principales)
+[Fonctionnement](#fonctionnement)
+[Pré-requis techniques](#pre-requis-techniques)
+
 ## Contexte
 
 Le prix Goncourt 2025 a été attribué mardi 4 novembre, au restaurant Drouant à Paris, à l'issue de trois sélections successives :
