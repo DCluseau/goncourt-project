@@ -1,10 +1,14 @@
 # Application de gestion du Prix Goncourt
 
 [Contexte](#contexte)
+
 [Objectifs de l'application](#objectifs-de-lapplication)
-[Fonctionnalités principales](#fonctionnalites-principales)
+
+[Fonctionnalités principales](#fonctionnalités-principales)
+
 [Fonctionnement](#fonctionnement)
-[Pré-requis techniques](#pre-requis-techniques)
+
+[Pré-requis techniques](#pré-requis-techniques)
 
 ## Contexte
 
