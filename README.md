@@ -3,10 +3,12 @@
 ## Contexte
 
 Le prix Goncourt 2025 a été attribué mardi 4 novembre, au restaurant Drouant à Paris, à l'issue de trois sélections successives :
-• mercredi 3/9 : première sélection comportant une liste de 15 romans ;
-• mardi 7/10 : deuxième sélection, réduite à 8 romans ;
-• mardi 28/10 : troisième sélection, révélant les 4 romans finalistes.
+  • mercredi 3/9 : première sélection comportant une liste de 15 romans ;
+  • mardi 7/10 : deuxième sélection, réduite à 8 romans ;
+  • mardi 28/10 : troisième sélection, révélant les 4 romans finalistes.
+
 Chaque livre porte un titre, est décrit par un résumé, écrit par un auteur, publié par un éditeur et comporte un ou plusieurs personnages principaux. Il est également caractérisé par une date de parution, un nombre de pages, un ISBN et un prix éditeur. En outre, chaque auteur peut être décrit – de façon optionnelle – par une biographie.
+
 Le jury est constitué par les membres de l'académie Goncourt qui est composée d'un ensemble de personnalités de l'écriture et présidée par l'une d'elles. Celui-ci établit trois sélections successives et attribut le prix Goncourt à l'auteur du roman primé à l'issue d'un dernier tour de scrutin lors duquel il obtient un certain nombre de voix, suivi par d'autres romans ayant obtenu moins de voix.
 
 ## Objectifs de l'application
@@ -15,36 +17,36 @@ L'application a pour but de permettre à un utilisateur d'afficher les livres s�
 
 ## Fonctionnalités principales
 
-- Sélection d'une année et d'un tour
-- Affichage des livres d'une sélection
-- Ajout d'un livre à une sélection
-- Saisie du nombre de votes pour un livre dans une sélection
-- Attribution du prix à un livre
+  - Sélection d'une année et d'un tour
+  - Affichage des livres d'une sélection
+  - Ajout d'un livre à une sélection
+  - Saisie du nombre de votes pour un livre dans une sélection
+  - Attribution du prix à un livre
 
 ## Fonctionnement
 
 Au lancement de l'application, il est demandé à l'utilisateur les informations suivantes :
-- L'année du concours
-- Le tour concerné
-- Si l'utilisateur est le président du jury
+  - L'année du concours
+  - Le tour concerné
+  - Si l'utilisateur est le président du jury
 
 Le menu suivant s'affiche ensuite : 
 
-1 - Sélectionner la sélection sur laquelle travailler
+  1 - Sélectionner la sélection sur laquelle travailler
 
-2 - Afficher les livres sélectionnés
+  2 - Afficher les livres sélectionnés
 
-3 - Modifier l'année sur laquelle travailler
+  3 - Modifier l'année sur laquelle travailler
 
-Si l'utilisateur est le rpésident, un complément au menu est affiché :
+  0 - Quitter le programme
 
-4 - Ajouter un livre à une sélection
+Si l'utilisateur est le président, un complément au menu est affiché :
 
-5 - Ajouter les votes à un livre
+  4 - Ajouter un livre à une sélection
 
-6 - Indiquer quel livre a reçu le prix
+  5 - Ajouter les votes à un livre
 
-0 - Quitter le programme
+  6 - Indiquer quel livre a reçu le prix
 
 Pour sélectionner une action à effectuer, il suffit de saisir le numéro du menu dans la console.
 Pour chaque action, l'application affiche les informations nécessaires avant de demander à l'utilisateur de saisir une nouvelle valeur. Une fois toutes les informations acquises, l'application les traite puis retourne automatiquement au menu principal.
@@ -56,7 +58,6 @@ Menu 2 :
 L'application affiche les livres sélectionnés pour l'année et le tour saisis
 
 Menu 3 : 
-
 L'application demande à l'utilisateur de saisir une année (au format AAAA)
 
 Pour le président du jury :
